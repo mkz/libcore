@@ -42,7 +42,7 @@ void nativeReleaseStringPlatformChars(JNIEnv* env, jstring jstr, const char* cha
     (*env)->ReleaseStringUTFChars(env, jstr, chars);
 }
 
-#if defined(LINUX) && (defined(_GNU_SOURCE) || \
+#if defined(LINUX) && !defined(__MUSL__) && (defined(_GNU_SOURCE) || \
          (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE < 200112L \
              && defined(_XOPEN_SOURCE) && _XOPEN_SOURCE < 600))
 extern int __xpg_strerror_r(int, char *, size_t);
