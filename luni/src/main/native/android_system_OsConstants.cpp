@@ -46,6 +46,20 @@
 #include <linux/if_addr.h>
 #include <linux/rtnetlink.h>
 
+// Fallbacks for constants absent from older or minimal kernel/libc headers (e.g. OHOS musl).
+#ifndef MADV_POPULATE_READ
+#define MADV_POPULATE_READ 22   // Linux 5.14
+#endif
+#ifndef MADV_POPULATE_WRITE
+#define MADV_POPULATE_WRITE 23  // Linux 5.14
+#endif
+#ifndef MADV_COLLAPSE
+#define MADV_COLLAPSE 25        // Linux 6.1
+#endif
+#ifndef _SC_2_C_VERSION
+#define _SC_2_C_VERSION 17      // POSIX.2 C language bindings; not exposed by musl
+#endif
+
 #include <nativehelper/JNIHelp.h>
 #include <nativehelper/jni_macros.h>
 
